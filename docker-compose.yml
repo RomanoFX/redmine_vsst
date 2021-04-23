@@ -9,10 +9,18 @@ services:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: redmine
 
+  smtp:
+    image: panubo/postfix
+    ports:
+      - 587:587
+    environment:
+      - MAILNAME=mydomain.com
+  
   redmine:
     image: redmine_vsst
     depends_on:
       - db
+      - smtp
     restart: always
     ports:
       - 8080:3000
