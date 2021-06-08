@@ -5,28 +5,25 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - //c/d:/var/lib/mysql
+      - /host/folder/db:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: hNTTP5ANzM@C
       MYSQL_DATABASE: redmine
 
-  smtp:
-    image: panubo/postfix
-    ports:
-      - 587:587
-    environment:
-      - MAILNAME=mydomain.com
-  
   redmine:
     image: redmine_vsst
+    volumes:
+      - /host/folder/redmine:/usr/src/redmine/files
     depends_on:
       - db
-      - smtp
     restart: always
     ports:
-      - 8080:3000
+      - 80:3000
     environment:
       REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: example
+      REDMINE_DB_PASSWORD: hNTTP5ANzM@C
       REDMINE_SECRET_KEY_BASE: supersecretkey
+
+volumes:
+  /host/folder

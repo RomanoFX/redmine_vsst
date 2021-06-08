@@ -1,4 +1,4 @@
-FROM redmine:4.2.0-alpine AS redmine
+FROM redmine:4.2.1-passenger AS redmine
 
 WORKDIR /usr/src/redmine/
 
